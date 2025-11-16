@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import { Transaction, ModalType, BudgetGoal, IncomeGoal, Currency } from './types';
 import SummaryCard from './components/SummaryCard';
@@ -42,6 +43,12 @@ const initialGoals: BudgetGoal[] = [
 const initialIncomeGoals: IncomeGoal[] = [
     { id: 1, category: 'Salary', target: 50000 },
     { id: 2, category: 'Freelance', target: 7500 },
+];
+
+const initialHistory: MonthlySummary[] = [
+    { month: 'June', year: 2024, totalIncome: 52000, totalExpenses: 25000, savings: 27000 },
+    { month: 'May', year: 2024, totalIncome: 55000, totalExpenses: 30000, savings: 25000 },
+    { month: 'April', year: 2024, totalIncome: 48000, totalExpenses: 22000, savings: 26000 },
 ];
 
 const CONVERSION_RATES: Record<Currency, number> = {
@@ -125,11 +132,15 @@ const App: React.FC = () => {
   };
 
 
-  const [history] = useState<MonthlySummary[]>([
-      { month: 'June', year: 2024, totalIncome: 52000, totalExpenses: 25000, savings: 27000 },
-      { month: 'May', year: 2024, totalIncome: 55000, totalExpenses: 30000, savings: 25000 },
-      { month: 'April', year: 2024, totalIncome: 48000, totalExpenses: 22000, savings: 26000 },
-  ]);
+  const [history, setHistory] = useState<MonthlySummary[]>(() => {
+    try {
+        const savedHistory = localStorage.getItem('budget-history');
+        return savedHistory ? JSON.parse(savedHistory) : initialHistory;
+    } catch (error) {
+        console.error("Failed to parse history from localStorage", error);
+        return initialHistory;
+    }
+  });
   const [modal, setModal] = useState<ModalType>(ModalType.NONE);
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -221,6 +232,7 @@ const App: React.FC = () => {
         localStorage.setItem('budget-expenses', JSON.stringify(expenses));
         localStorage.setItem('budget-goals', JSON.stringify(budgetGoals));
         localStorage.setItem('budget-income-goals', JSON.stringify(incomeGoals));
+        localStorage.setItem('budget-history', JSON.stringify(history));
         setSaveStatus('Data saved successfully!');
         setTimeout(() => setSaveStatus(''), 3000);
     } catch (error) {
@@ -228,7 +240,7 @@ const App: React.FC = () => {
         setSaveStatus('Error saving data.');
         setTimeout(() => setSaveStatus(''), 3000);
     }
-  }, [income, expenses, budgetGoals, incomeGoals]);
+  }, [income, expenses, budgetGoals, incomeGoals, history]);
 
   const handleSaveAllGoals = useCallback(({ expenseGoals, incomeGoals }: { expenseGoals: BudgetGoal[], incomeGoals: IncomeGoal[] }) => {
     const convertedExpenseGoals = expenseGoals.map(g => ({ ...g, target: convertToBase(g.target) }));
@@ -249,17 +261,19 @@ const App: React.FC = () => {
   }, []);
 
   const handleClearAllData = useCallback(() => {
-    if (window.confirm('Are you sure you want to clear all data? This will reset all income, expenses, and goals to their default values. This action cannot be undone.')) {
+    if (window.confirm('Are you sure you want to clear all data? This will remove all income, expenses, and goals. This action cannot be undone.')) {
         try {
-            localStorage.removeItem('budget-income');
-            localStorage.removeItem('budget-expenses');
-            localStorage.removeItem('budget-goals');
-            localStorage.removeItem('budget-income-goals');
+            localStorage.setItem('budget-income', '[]');
+            localStorage.setItem('budget-expenses', '[]');
+            localStorage.setItem('budget-goals', '[]');
+            localStorage.setItem('budget-income-goals', '[]');
+            localStorage.setItem('budget-history', '[]');
 
-            setIncome(initialIncome);
-            setExpenses(initialExpenses);
-            setBudgetGoals(initialGoals);
-            setIncomeGoals(initialIncomeGoals);
+            setIncome([]);
+            setExpenses([]);
+            setBudgetGoals([]);
+            setIncomeGoals([]);
+            setHistory([]);
 
             setSaveStatus('All data cleared successfully!');
             setTimeout(() => setSaveStatus(''), 3000);
