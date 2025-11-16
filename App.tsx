@@ -8,7 +8,7 @@ import HistorySummary from './components/HistorySummary';
 import BudgetGoals from './components/BudgetGoals';
 import IncomeGoals from './components/IncomeGoals';
 import BudgetGoalModal from './components/BudgetGoalModal';
-import { PlusIcon, ArrowUpIcon, ArrowDownIcon, WalletIcon, DownloadIcon, SaveIcon, TargetIcon, SunIcon, MoonIcon } from './components/Icons';
+import { PlusIcon, ArrowUpIcon, ArrowDownIcon, WalletIcon, DownloadIcon, SaveIcon, TargetIcon, SunIcon, MoonIcon, TrashIcon } from './components/Icons';
 
 interface MonthlySummary {
   month: string;
@@ -248,6 +248,29 @@ const App: React.FC = () => {
     }
   }, []);
 
+  const handleClearAllData = useCallback(() => {
+    if (window.confirm('Are you sure you want to clear all data? This will reset all income, expenses, and goals to their default values. This action cannot be undone.')) {
+        try {
+            localStorage.removeItem('budget-income');
+            localStorage.removeItem('budget-expenses');
+            localStorage.removeItem('budget-goals');
+            localStorage.removeItem('budget-income-goals');
+
+            setIncome(initialIncome);
+            setExpenses(initialExpenses);
+            setBudgetGoals(initialGoals);
+            setIncomeGoals(initialIncomeGoals);
+
+            setSaveStatus('All data cleared successfully!');
+            setTimeout(() => setSaveStatus(''), 3000);
+        } catch (error) {
+            console.error("Failed to clear data from localStorage", error);
+            setSaveStatus('Error clearing data.');
+            setTimeout(() => setSaveStatus(''), 3000);
+        }
+    }
+  }, []);
+
   const handleApplyFilter = useCallback(() => {
     setAppliedStartDate(startDate);
     setAppliedEndDate(endDate);
@@ -440,6 +463,9 @@ const App: React.FC = () => {
                             <div className="flex flex-col gap-4">
                                 <button onClick={handleSaveData} className="flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-4 rounded-lg transition-transform transform hover:scale-105">
                                     <SaveIcon /> Save Data
+                                </button>
+                                <button onClick={handleClearAllData} className="flex items-center justify-center gap-2 bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-4 rounded-lg transition-transform transform hover:scale-105">
+                                    <TrashIcon /> Clear All Data
                                 </button>
                             </div>
                         </div>
