@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { BudgetGoal, IncomeGoal, Currency } from '../types';
 import { PlusIcon, DeleteIcon } from './Icons';
@@ -61,16 +62,12 @@ const BudgetGoalModal: React.FC<BudgetGoalModalProps> = ({ isOpen, onClose, onSa
   if (!isOpen) return null;
 
   const goals = activeTab === 'expense' ? expenseGoals : incomeGoals;
-  const tabConfig = {
-    expense: {
-      title: 'Expense Goals',
-      color: 'purple',
-    },
-    income: {
-      title: 'Income Goals',
-      color: 'emerald',
-    }
-  }
+  
+  const inputBaseClass = "w-full bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 text-gray-800 dark:text-gray-200 rounded-md p-2 focus:ring-2 outline-none";
+  const focusClass = activeTab === 'expense' 
+    ? "focus:ring-purple-500 focus:border-purple-500" 
+    : "focus:ring-emerald-500 focus:border-emerald-500";
+  const inputClassName = `${inputBaseClass} ${focusClass}`;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
@@ -102,7 +99,7 @@ const BudgetGoalModal: React.FC<BudgetGoalModalProps> = ({ isOpen, onClose, onSa
                             type="text"
                             value={goal.category}
                             onChange={(e) => handleGoalChange(goal.id, 'category', e.target.value)}
-                            className={`w-full bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 text-gray-800 dark:text-gray-200 rounded-md p-2 focus:ring-2 focus:ring-${tabConfig[activeTab].color}-500 focus:border-${tabConfig[activeTab].color}-500 outline-none`}
+                            className={inputClassName}
                             placeholder={`e.g., ${activeTab === 'expense' ? 'Groceries' : 'Salary'}`}
                         />
                     </div>
@@ -112,7 +109,7 @@ const BudgetGoalModal: React.FC<BudgetGoalModalProps> = ({ isOpen, onClose, onSa
                             type="number"
                             value={goal.target}
                             onChange={(e) => handleGoalChange(goal.id, 'target', e.target.value)}
-                            className={`w-full bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 text-gray-800 dark:text-gray-200 rounded-md p-2 focus:ring-2 focus:ring-${tabConfig[activeTab].color}-500 focus:border-${tabConfig[activeTab].color}-500 outline-none`}
+                            className={inputClassName}
                             placeholder="e.g., 100"
                             step="0.01"
                         />

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { ModalType, Transaction, Currency } from '../types';
 
@@ -45,12 +46,13 @@ const TransactionModal: React.FC<TransactionModalProps> = ({ isOpen, onClose, on
 
   if (!isOpen) return null;
   
-  const themeColor = isIncome ? 'emerald' : 'rose';
   const headerText = isEditing
     ? `Edit ${isIncome ? 'Income' : 'Expense'}`
     : `Add ${isIncome ? 'Income' : 'Expense'}`;
   const buttonText = isEditing ? 'Save Changes' : 'Add Transaction';
-  const buttonClass = `w-full bg-${themeColor}-500 hover:bg-${themeColor}-600 text-white font-bold py-2 px-4 rounded-lg`;
+  const buttonClass = isIncome
+    ? 'w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 px-4 rounded-lg'
+    : 'w-full bg-rose-500 hover:bg-rose-600 text-white font-bold py-2 px-4 rounded-lg';
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">

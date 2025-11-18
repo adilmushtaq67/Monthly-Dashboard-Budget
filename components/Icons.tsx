@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 export const PlusIcon = () => (
@@ -32,8 +33,7 @@ export const DownloadIcon = () => (
 
 export const SaveIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-        <path d="M7.5 2.5a.5.5 0 00-1 0V5a.5.5 0 00.5.5h1.5a.5.5 0 00.5-.5V2.5a.5.5 0 00-.5-.5zM6 6a1 1 0 00-1 1v1a1 1 0 001 1h8a1 1 0 001-1V7a1 1 0 00-1-1H6z" />
-        <path fillRule="evenodd" d="M3.5 2a.5.5 0 00-.5.5v15a.5.5 0 00.5.5h13a.5.5 0 00.5-.5v-13a.5.5 0 00-.5-.5h-2.5a.5.5 0 00-.5.5V5a1.5 1.5 0 01-1.5 1.5H7A1.5 1.5 0 015.5 5V2.5a.5.5 0 00-.5-.5h-1.5zM7.5 3.5V5a.5.5 0 00.5.5h1.5a.5.5 0 00.5-.5V3.5a.5.5 0 00-.5-.5h-1.5a.5.5 0 00-.5.5z" clipRule="evenodd" />
+        <path d="M3 3a1 1 0 00-1 1v12a1 1 0 001 1h14a1 1 0 001-1V7l-4-4H3zm2 4a1 1 0 011-1h6a1 1 0 110 2H6a1 1 0 01-1-1zm1 4a1 1 0 100 2h3a1 1 0 100-2H6z" />
     </svg>
 );
 
@@ -51,16 +51,14 @@ export const DeleteIcon = () => (
 
 export const TargetIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clipRule="evenodd" />
-        <path d="M10 3a7 7 0 100 14 7 7 0 000-14zM3 10a7 7 0 1114 0 7 7 0 01-14 0z" />
+        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm0-2a6 6 0 100-12 6 6 0 000 12zm0-4a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
     </svg>
 );
 
 export const PiggyBankIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-        <path d="M2 10.5a1.5 1.5 0 113 0v1.02a1.5 1.5 0 01-1.28 1.485A1.5 1.5 0 012 11.52V10.5zM6.5 10.5a1.5 1.5 0 113 0v1.02a1.5 1.5 0 01-1.28 1.485A1.5 1.5 0 016.5 11.52V10.5z" />
-        <path d="M10 3.5a1.5 1.5 0 00-1.5 1.5v.982a3.5 3.5 0 00-1.636 5.393l-1.378.827A4.5 4.5 0 0013.5 14.502V15h1.5a1.5 1.5 0 001.5-1.5v-2.002a4.5 4.5 0 00-7.364-3.171L8.5 7.482v-1a1.5 1.5 0 00-1.5-1.5h-1a1.5 1.5 0 00-1.5 1.5v1.018a1.5 1.5 0 002.219 1.372L7.5 9.482v.518a2.5 2.5 0 01-1.136 3.868l-1.378.827A3.5 3.5 0 019.5 15.502V16h1a1.5 1.5 0 011.5-1.5v-1.018a1.5 1.5 0 01-2.219-1.372L8.5 11.518v-.518a3.5 3.5 0 001.636-5.393L11.5 6.018v-.518A1.5 1.5 0 0010 3.5z" />
-        <path fillRule="evenodd" d="M1 10.5a3.5 3.5 0 117 0v1.02a3.5 3.5 0 01-2.99 3.475l-.337.067a1.5 1.5 0 01-1.348 0l-.337-.067A3.5 3.5 0 011 11.52V10.5zM8.5 10.5a2.5 2.5 0 115 0v1.02a2.5 2.5 0 01-2.14 2.48l-.36.07a2.5 2.5 0 01-2.002 0l-.36-.07A2.5 2.5 0 018.5 11.52V10.5z" clipRule="evenodd" />
+      <path d="M2 11.5a1.5 1.5 0 013 0v.563a1.5 1.5 0 01-3 0V11.5zm5.5 0a1.5 1.5 0 013 0v.563a1.5 1.5 0 01-3 0V11.5z"/>
+      <path fillRule="evenodd" d="M2 6.5a3.5 3.5 0 013.5-3.5h1.148a3.5 3.5 0 013.302 2.336l.283.658c.285.663.906 1.114 1.623 1.114h2.29a3.5 3.5 0 013.5 3.5v1.299A3.5 3.5 0 0116.5 15h-13A3.5 3.5 0 010 11.5v-5zm3.5-2a2.5 2.5 0 00-2.5 2.5v5a2.5 2.5 0 002.5 2.5h13a2.5 2.5 0 002.5-2.5V10a2.5 2.5 0 00-2.5-2.5h-2.29a4.5 4.5 0 01-4.118-2.889l-.283-.658A2.5 2.5 0 009.648 4.5H5.5z" clipRule="evenodd"/>
     </svg>
 );
 
@@ -80,4 +78,34 @@ export const TrashIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
     </svg>
+);
+
+export const ShareIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+      <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
+    </svg>
+);
+  
+export const TwitterIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616v.064c0 2.298 1.634 4.218 3.82 4.652-.713.195-1.464.225-2.204.084.618 1.905 2.423 3.295 4.566 3.334-1.786 1.4-4.033 2.24-6.467 2.24-.42 0-.835-.025-1.243-.073 2.298 1.474 5.021 2.33 7.942 2.33 9.463 0 14.59-7.933 14.15-14.957.994-.718 1.858-1.613 2.544-2.639z" />
+  </svg>
+);
+
+export const FacebookIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v2.385z" />
+  </svg>
+);
+
+export const LinkedInIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
+  </svg>
+);
+
+export const ClipboardIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+  </svg>
 );

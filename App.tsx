@@ -1,5 +1,5 @@
 
-import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import React, { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import { Transaction, ModalType, BudgetGoal, IncomeGoal, Currency } from './types';
 import SummaryCard from './components/SummaryCard';
 import ExpensesPieChart from './components/ExpensesPieChart';
@@ -9,7 +9,8 @@ import HistorySummary from './components/HistorySummary';
 import BudgetGoals from './components/BudgetGoals';
 import IncomeGoals from './components/IncomeGoals';
 import BudgetGoalModal from './components/BudgetGoalModal';
-import { PlusIcon, ArrowUpIcon, ArrowDownIcon, WalletIcon, DownloadIcon, SaveIcon, TargetIcon, SunIcon, MoonIcon, TrashIcon } from './components/Icons';
+import { PlusIcon, ArrowUpIcon, ArrowDownIcon, WalletIcon, DownloadIcon, SaveIcon, TargetIcon, SunIcon, MoonIcon, TrashIcon, ShareIcon } from './components/Icons';
+import ShareButton from './components/ShareButton';
 
 interface MonthlySummary {
   month: string;
@@ -112,6 +113,21 @@ const App: React.FC = () => {
     const savedCurrency = localStorage.getItem('budget-currency');
     return (savedCurrency as Currency) || 'PKR';
   });
+  
+  const [isShareMenuOpen, setShareMenuOpen] = useState(false);
+  const shareMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+        if (shareMenuRef.current && !shareMenuRef.current.contains(event.target as Node)) {
+            setShareMenuOpen(false);
+        }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+    };
+}, [shareMenuRef]);
 
   useEffect(() => {
     localStorage.setItem('budget-currency', currency);
@@ -378,6 +394,19 @@ const App: React.FC = () => {
             >
               {theme === 'light' ? <MoonIcon /> : <SunIcon />}
             </button>
+             <div className="relative" ref={shareMenuRef}>
+                <button 
+                  id="share-button"
+                  onClick={() => setShareMenuOpen(prev => !prev)} 
+                  className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-sky-500"
+                  aria-label="Share dashboard"
+                  aria-haspopup="true"
+                  aria-expanded={isShareMenuOpen}
+                >
+                  <ShareIcon />
+                </button>
+                <ShareButton isOpen={isShareMenuOpen} onClose={() => setShareMenuOpen(false)} />
+            </div>
           </div>
         </header>
 
